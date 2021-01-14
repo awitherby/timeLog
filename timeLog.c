@@ -97,7 +97,6 @@ void fprintRecord(FILE* fp,Record_t* rc)
         fprintf(fp,"\n");    
     }
 }
-
 void printRecord(Record_t* rc)
 {
     printf ("%s \t %s \t %d \t %d \t %d \t %d:%d:%d",rc->cmd,
@@ -174,7 +173,7 @@ void getUserInput(char* cmd,char* arg1)
             if(!strcmp(cmd,START_CMD)) break;
             if(!strcmp(cmd,DISP_CMD)) break;
             if(!strcmp(cmd,EXIT)) exit(-1);
-            printf("Usage: type \"stop + enter\" to sign in.\n");
+            printf("Usage: type \"start + enter\" to sign in.\n");
             printf("       type \"stop + enter\" to sign out.\n");
             printf("       type \"display + enter\" show timesheet.\n");
             printf("       type \"new + enter\" to start a new timesheet.\n");
