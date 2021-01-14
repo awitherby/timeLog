@@ -45,6 +45,7 @@ void newLogFile(char* newPath);
 void getRecord(Record_t* record,char* cmd);
 void startCommand(char* logPath,bool usingCmdArg);
 
+
 /**
  * Returns if a file exists
  * @filename the path to the file.
@@ -54,11 +55,13 @@ bool file_exists (char *filename) {
     struct stat buffer;   
     return (stat (filename, &buffer) == 0);
 }
+
 /**
  * Assigns the day of the week to the buffer
  * @buff the output buffer
  * @daySinceSunday the days since sunday E [0,6]
  */
+
 void getDayOfWeek(char* buff,int daySinceSunday)
 {
     switch(daySinceSunday)
@@ -76,6 +79,7 @@ void getDayOfWeek(char* buff,int daySinceSunday)
  * convert struct tm* to local Record_t format
  * @timeinfo the struct to be converted from
  * @rc the new record format.
+
  */
 void timeToRecord(struct tm* timeinfo,char* cmd,Record_t* rc){
     char wday[MAX_DAY_STRING];
@@ -130,6 +134,7 @@ void printRecord(Record_t* rc)
         printf("\n");    
     }
 }
+
 /**
  * Get the hours worked between the two records
  * @rc the current record
@@ -184,7 +189,7 @@ void getConfig(char* buff,int val){
  * Gets the input from the user when opened from file explorer
  * @cmd the command from the user
  * @arg1 buff to contain the second input argument.
- */
+*/
 
 void getUserInput(char* cmd,char* arg1)
 {    
@@ -205,12 +210,14 @@ void getUserInput(char* cmd,char* arg1)
             }
         }
 }
+
 /**
  * Handels a request to sign out by the user
  * @logPath the path to the timesheet file
  * @usingCmdArg indicates if the app was launched from 
  * command line or from a file explorer
  */
+
 void stopCommand(char* logPath, bool usingCmdArg)
 {
     Record_t last;
@@ -270,12 +277,14 @@ void stopCommand(char* logPath, bool usingCmdArg)
     fclose(fp);
     exit(0);
 }
+
 /**
  * Displays the contents of the current timesheet
  * @logPath the path to the timesheet
  * @usingCmdArg indicats if the app was launched from command line 
  * or a file explorer.
  */
+
 int displayCommand(char* logPath,bool usingCmdArg){
     FILE* fp = fopen(logPath,"r");
     char c;
@@ -351,6 +360,7 @@ int replace_string_on_line(int line_num, char* newline,char* file_path)
  * @name the name of the file
  * @buff the return buffer to contain the output.
  */
+
 void makePath(char* dir, char* name, char* buff)
 {
     strcpy(buff,"./");
@@ -366,10 +376,12 @@ void makePath(char* dir, char* name, char* buff)
     }
   
 }
+
 /**
  * creats a new timesheet 
  * @newPath the path to the file to be created includeing the name of the file.
  */
+
 void newLogFile(char* newPath){
 
     FILE* fp;
@@ -385,11 +397,13 @@ void newLogFile(char* newPath){
 
     fclose(fp);
 }
+
 /**
  * adds data to a record from the computers system clock
  * @record struct for the data
  * @cmd the use case specified by the user
  */
+
 void getRecord(Record_t* record,char* cmd)
 {
     time_t rawtime;
@@ -400,6 +414,7 @@ void getRecord(Record_t* record,char* cmd)
     timeToRecord(timeinfo,cmd,record);
 
 }
+
 /**
  * Handles a request to sign in to work
  * @logPath the path to the timesheet file
@@ -421,10 +436,12 @@ void startCommand(char* logPath,bool usingCmdArg)
     fclose(fp);
     exit(0);
 }
+
 /**
  * Create a new timesheet file if a request is made
  * @name the name of the file with no path.
  */
+
 void newFileCommand(char* name)
 {
     replace_string_on_line(LOG_PATH_LINE,name,CONFIG_PATH);
